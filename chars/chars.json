@@ -1,0 +1,11 @@
+{ 
+	"Soldier1": {
+		"name"   	: "Soldier1",
+		"troops"  : 100,
+		"actions"	: 3,
+		"atk"   	: 1,
+	  "def"   	: 1,
+  	"spd"   	: 1
+	}
+}
+

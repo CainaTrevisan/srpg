@@ -1,0 +1,14 @@
+{
+	"Warrior" : {	
+		"name"  : "Warrior",
+		"atk"   : 5,
+		"def"   : 2,
+		"spd"	: 1 
+	},
+	"Defender" : {
+		"name"  : "Defender",
+		"atk"   : 2,
+		"def"   : 5,
+		"spd"	: 1 
+	}
+}
