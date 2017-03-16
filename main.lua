@@ -1,4 +1,4 @@
-local class = require 'lupy'
+--local class = require 'lupy'
 local json = assert (loadfile "json.lua")()
 
 Current_Board = {}
@@ -8,10 +8,6 @@ for i=1,6 do
 		Current_Board[i][j] = nil
 	end
 end
-
-Boards = {}
-Professions = {}
-Characters = {}
 
 --pre-determined professions
 local function read_profs(path)
@@ -33,6 +29,7 @@ local function read_profs(path)
 --		print('\n')
 --	end
 
+	return Professions
 end
 
 -- pre-determined characters
@@ -47,14 +44,15 @@ local function read_chars(path)
 
 	Characters = json:decode(chars)
 
-	for i,j in pairs(Characters) do
-		print("Character", i)
-		for m,n in pairs(j) do
-	    	print (m, n)
-		end	
-		print('\n')
-	end
+--	for i,j in pairs(Characters) do
+--		print("Character", i)
+--		for m,n in pairs(j) do
+--	    	print (m, n)
+--		end	
+--		print('\n')
+--	end
 
+	return Characters
 end
 
 -- character positions provided by players
@@ -63,29 +61,39 @@ local function read_board(path)
 	local file = open(path, "r")	
 	if not file then return nil end
 
-	boards = file:read "*a"
+	board = file:read "*a"
 
 	file:close()
 
-	Boards = json:decode(boards)
+	Board = json:decode(board)
 
-	for i,j in pairs(Boards) do
-		print("Board", i)
-		for m,n in pairs(j) do
-			for p=1,3 do
-	    		io.write(n[p])
-			end
-			print('\n')
-		end	
-		print('\n')
-	end
+--	for i,j in pairs(Board) do
+--		print("Board", i)
+--		for m,n in pairs(j) do
+--			for p=1,3 do
+--	    		io.write(n[p])
+--			end
+--			print('\n')
+--		end	
+--		print('\n')
+--	end
 
+	return Board
 end
+
+-- faster character
+local function faster_char(a, b)
+	if (a["spd"] + a["prof"] ) < () then	
+		return true
+	end
+	return false
+end	
 
 -- Main
 
-local profs = read_profs(arg[1])
-local chars = read_chars(arg[2])
-local board = read_board(arg[3])
+local Professions = read_profs(arg[1])
+local Characters = read_chars(arg[2])
+local boardp1 = read_board(arg[3])
+local boardp2 = read_board(arg[4])
 
-
+table.sort(Characters, faster_char)
